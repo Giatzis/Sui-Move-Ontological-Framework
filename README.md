@@ -10,7 +10,7 @@ Our framework is composed of three integrated layers:
 
 1. An OWL ontology that formally models the core components of the Sui Move language.
 2. A curated library of four fundamental secure design patterns.
-3. A set of Object-Centric Dynamic Condition Response (OC-DCR) graphs that specify the expected behavior of these patterns.
+3. A set of Dynamic Condition Response (DCR) graphs that specify the expected behavior of these patterns.
 
 This repository provides the complete ontology, the DCR graph models, and other relevant materials.
 
