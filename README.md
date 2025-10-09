@@ -16,7 +16,7 @@ This repository provides the complete ontology, the DCR graph models, and other 
 
 ## Repository Structure
 
-- `/ontology/`: Contains the core OWL ontology file (`sui_move_ontology.ttl`).
+- `/ontology/`: Contains the core OWL ontology file.
 - `/images/`: Contains visual representations of the DCR graphs for the four security patterns discussed in the paper.
 
 ## The Ontology
