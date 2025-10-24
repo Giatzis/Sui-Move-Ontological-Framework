@@ -18,7 +18,8 @@ This repository provides the complete ontology, the DCR graph models, and other 
 
 - `/ontology/`: Contains the core OWL ontology file.
 - `/images/`: Contains visual representations of the DCR graphs for the four security patterns discussed in the paper.
-- `/codebases/`: Contains the codebases upon which the ontology was externally validated (September 25, 2025).
+- [`/codebases/`](codebases/Validation%20Codebases.md)
+: Contains the codebases upon which the ontology was externally validated (September 25, 2025).
 
 ## The Ontology
 
