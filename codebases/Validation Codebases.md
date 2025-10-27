@@ -1,7 +1,7 @@
 # 🔒 Validation Codebase URLs
 
-These are the links for the codebases used for our external validation. The codebases as they existed until September 24, 2025, are located in the folder `Codebases (24 September 2025)`, and can be directly downloaded from this folder or visit the links below.<br><br>
-You can copy each link into your browser or use tools like `curl` or `wget` to download the files directly.
+The versions of the codebases used for our external validation as of September 24, 2025, are located in the folder `Codebases (24 September 2025)`.<br><br>
+There is also the option to download them directly from the source: copy each link into your browser or use tools like `curl` or `wget` to download the files directly.
 
 ---
 
