@@ -1,6 +1,6 @@
 # 🔒 Validation Codebase URLs
 
-These are the exact versions used for **validation** as of **September 24, 2025**.  
+These are the links for the codebases used for our external validation. The codebases as they existed until September 24, 2025, are located in the folder `Codebases (24 September 2025)`, and can be directly downloaded from this folder or visit the links below.<br><br>
 You can copy each link into your browser or use tools like `curl` or `wget` to download the files directly.
 
 ---
@@ -58,7 +58,7 @@ https://docs.sui.io/concepts/tokenomics/vesting-strategies?raw=true
 
 ### 🧩 Notes
 
-- All URLs point to **immutable** commit-specific versions for reproducible validation.
+- All URLs point to **immutable** commit-specific versions for reproducible validation (except the Time Incentivization Pattern).
 - Duplicate links were removed for clarity.
 - You can use `curl` or `wget` for quick download, for example:
   ```bash
