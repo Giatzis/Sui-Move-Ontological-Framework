@@ -38,3 +38,6 @@ The research formally models four critical secure design patterns using DCR grap
 3. **Time Incentivization**: Uses temporal constraints to reward or penalize actions.
 4. **Escapability**: Models stateful business logic to prevent unintended states.
 
+## Authors
+PhD Candidate Giatzis Antonios, University of Macedonia, Thessaloniki, Greece.<br /> 
+Professor Christos K. Georgiadis (Supervisor), University of Macedonia, Thessaloniki, Greece.
