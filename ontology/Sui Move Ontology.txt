@@ -1,0 +1,367 @@
+﻿@prefix :    <http://www.sui-move-ontology.com/ontology#> .
+@prefix sui:  <http://www.sui-move-ontology.com/ontology#> .
+@prefix ocdcr:<http://www.sui-move-ontology.com/ocdcr#> .
+@prefix dcr:  <http://purl.org/net/dcr#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix software: <https://w3id.org/software#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+
+#################################################################
+# Ontology Declaration
+#################################################################
+
+
+: a owl:Ontology ;
+    rdfs:label       "Sui Move Security Ontology" ;
+    owl:versionInfo  "1.0.0" ;
+    rdfs:comment     "Comprehensive ontology modeling Sui Move language layers, patterns, and OC-DCR processes" .
+
+
+#################################################################
+# Core Classes 
+#################################################################
+
+
+## Module & Packaging
+sui:Package      rdf:type owl:Class ; rdfs:label "Package" .
+sui:Module       rdf:type owl:Class ; rdfs:label "Module" .
+sui:Address      rdf:type owl:Class ; rdfs:label "Address" .
+
+
+## Type System
+sui:Type         rdf:type owl:Class ; rdfs:label "Type" .
+sui:PrimitiveType rdf:type owl:Class ; rdfs:subClassOf sui:Type ; rdfs:label "Primitive Type" .
+sui:Struct       rdf:type owl:Class ; rdfs:subClassOf sui:Type ; rdfs:label "Struct" .
+sui:Object       rdf:type owl:Class ; rdfs:subClassOf sui:Struct ; rdfs:label "Object" .
+sui:Enum         rdf:type owl:Class ; rdfs:subClassOf sui:Type ; rdfs:label "Enum" .
+sui:EnumVariant  rdf:type owl:Class ; rdfs:label "Enum Variant" .
+sui:Reference    rdf:type owl:Class ; rdfs:subClassOf sui:Type ; rdfs:label "Reference" .
+sui:Vector       rdf:type owl:Class ; rdfs:subClassOf sui:Type ; rdfs:label "Vector" .
+sui:TypeParameter rdf:type owl:Class ; rdfs:label "Type Parameter" .
+sui:Field        rdf:type owl:Class ; rdfs:label "Field" .
+
+
+## Function System
+sui:Function     rdf:type owl:Class ; rdfs:label "Function" .
+sui:Parameter    rdf:type owl:Class ; rdfs:label "Parameter" .
+sui:Constant     rdf:type owl:Class ; rdfs:label "Constant" .
+sui:Visibility   rdf:type owl:Class ; rdfs:label "Function Visibility" .
+sui:StructVisibility rdf:type owl:Class ; rdfs:label "Struct Visibility" .
+
+
+## Runtime/Storage
+sui:OwnershipType        rdf:type owl:Class ; rdfs:label "Ownership Type" .
+sui:ObjectLifecycleState rdf:type owl:Class ; rdfs:label "Object Lifecycle State" .
+sui:DynamicField         rdf:type owl:Class ; rdfs:label "Dynamic Field" .
+sui:Event                rdf:type owl:Class ; rdfs:subClassOf sui:Struct ; rdfs:label "Event Struct" .
+sui:GlobalStorageOperation rdf:type owl:Class ; rdfs:label "Global Storage Operation" .
+
+
+## Transactions / PTB
+sui:Transaction  rdf:type owl:Class ; rdfs:label "Transaction" .
+sui:TransactionEffects rdf:type owl:Class ; rdfs:label "Transaction Effects" .
+sui:ProgrammableTransactionBlock rdf:type owl:Class ; rdfs:label "Programmable Transaction Block" .
+
+
+## Verification & Semantics
+sui:Ability      rdf:type owl:Class ; rdfs:label "Ability" .
+sui:Specification rdf:type owl:Class ; rdfs:label "Specification" .
+sui:SpecClause   rdf:type owl:Class ; rdfs:label "Specification Clause" .
+sui:Invariant    rdf:type owl:Class ; rdfs:subClassOf sui:SpecClause ; rdfs:label "Invariant" .
+sui:RequiresClause rdf:type owl:Class ; rdfs:subClassOf sui:SpecClause ; rdfs:label "Requires Clause" .
+sui:EnsuresClause  rdf:type owl:Class ; rdfs:subClassOf sui:SpecClause ; rdfs:label "Ensures Clause" .
+sui:AbortsIfClause rdf:type owl:Class ; rdfs:subClassOf sui:SpecClause ; rdfs:label "Aborts If Clause" .
+sui:ModifiesClause rdf:type owl:Class ; rdfs:subClassOf sui:SpecClause ; rdfs:label "Modifies Clause" .
+sui:BorrowingOperator rdf:type owl:Class ; rdfs:label "Borrowing Operator" .
+
+
+#################################################################
+# Enumerations / Individuals
+#################################################################
+
+
+## Abilities
+:key   rdf:type sui:Ability, owl:NamedIndividual .
+:store rdf:type sui:Ability, owl:NamedIndividual .
+:copy  rdf:type sui:Ability, owl:NamedIndividual .
+:drop  rdf:type sui:Ability, owl:NamedIndividual .
+
+
+## Function Visibility
+:public        rdf:type sui:Visibility, owl:NamedIndividual .
+:publicPackage rdf:type sui:Visibility, owl:NamedIndividual ; rdfs:label "public(package)" .
+:private       rdf:type sui:Visibility, owl:NamedIndividual .
+
+
+## Struct Visibility
+:structPublic rdf:type sui:StructVisibility, owl:NamedIndividual ; rdfs:label "public (struct)" .
+
+
+## Ownership Types
+:AddressOwned rdf:type sui:OwnershipType, owl:NamedIndividual ; rdfs:label "Address-Owned" .
+:Shared       rdf:type sui:OwnershipType, owl:NamedIndividual ; rdfs:label "Shared" .
+:Immutable    rdf:type sui:OwnershipType, owl:NamedIndividual ; rdfs:label "Immutable" .
+:Wrapped      rdf:type sui:OwnershipType, owl:NamedIndividual ; rdfs:label "Wrapped" .
+
+
+## Lifecycle States
+:Created     rdf:type sui:ObjectLifecycleState, owl:NamedIndividual ; rdfs:label "Created" .
+:Owned       rdf:type sui:ObjectLifecycleState, owl:NamedIndividual ; rdfs:label "Owned" .
+:Transferred rdf:type sui:ObjectLifecycleState, owl:NamedIndividual ; rdfs:label "Transferred" .
+:Deleted     rdf:type sui:ObjectLifecycleState, owl:NamedIndividual ; rdfs:label "Deleted" .
+
+
+#################################################################
+# Object & Datatype Properties
+#################################################################
+
+
+sui:contains    rdf:type owl:ObjectProperty .
+sui:isContainedIn rdf:type owl:ObjectProperty ; owl:inverseOf sui:contains .
+sui:defines     rdf:type owl:ObjectProperty .
+sui:isDefinedBy rdf:type owl:ObjectProperty ; owl:inverseOf sui:defines .
+sui:belongsTo   rdf:type owl:ObjectProperty .
+sui:hasName     rdf:type owl:DatatypeProperty ; rdfs:range xsd:string .
+sui:hasVersion  rdf:type owl:DatatypeProperty ; rdfs:range xsd:string .
+
+
+sui:uses        rdf:type owl:ObjectProperty .
+sui:isUsedBy    rdf:type owl:ObjectProperty ; owl:inverseOf sui:uses .
+sui:calls       rdf:type owl:ObjectProperty .
+sui:isCalledBy  rdf:type owl:ObjectProperty ; owl:inverseOf sui:calls .
+sui:instantiates rdf:type owl:ObjectProperty ; rdfs:domain sui:Function ; rdfs:range sui:Struct .
+
+
+sui:imports     rdf:type owl:ObjectProperty ; rdfs:domain sui:Module ; rdfs:range sui:Module .
+sui:dependsOn   rdf:type owl:ObjectProperty ; rdfs:domain sui:Package ; rdfs:range sui:Package .
+sui:friends     rdf:type owl:ObjectProperty ; owl:deprecated "true"^^xsd:boolean ; rdfs:comment "Deprecated. Use public(package)." .
+
+
+sui:stores      rdf:type owl:ObjectProperty ; rdfs:domain sui:Address ; rdfs:range sui:Module .
+sui:owns        rdf:type owl:ObjectProperty ; rdfs:domain [ a owl:Class ; owl:unionOf (sui:Address sui:Object) ] ; rdfs:range sui:Object .
+sui:hasDynamicField rdf:type owl:ObjectProperty ; rdfs:domain sui:Object ; rdfs:range sui:DynamicField .
+sui:dynamicFieldKey rdf:type owl:DatatypeProperty ; rdfs:domain sui:DynamicField ; rdfs:range xsd:string .
+sui:hasOwnershipType rdf:type owl:ObjectProperty ; rdfs:domain sui:Object ; rdfs:range sui:OwnershipType .
+sui:hasLifecycleState rdf:type owl:ObjectProperty ; rdfs:domain sui:Object ; rdfs:range sui:ObjectLifecycleState .
+
+
+sui:hasType      rdf:type owl:ObjectProperty .
+sui:implements   rdf:type owl:ObjectProperty ; rdfs:domain sui:Struct ; rdfs:range sui:Ability .
+sui:constrains   rdf:type owl:ObjectProperty ; rdfs:domain sui:TypeParameter ; rdfs:range sui:Ability .
+sui:references   rdf:type owl:ObjectProperty ; rdfs:domain sui:Reference ; rdfs:range sui:Type .
+sui:isPhantom    rdf:type owl:DatatypeProperty ; rdfs:range xsd:boolean .
+
+
+sui:hasParameter rdf:type owl:ObjectProperty ; rdfs:domain sui:Function ; rdfs:range sui:Parameter .
+sui:returns      rdf:type owl:ObjectProperty ; rdfs:domain sui:Function ; rdfs:range sui:Type .
+sui:hasVisibility rdf:type owl:ObjectProperty ; rdfs:domain sui:Function ; rdfs:range sui:Visibility .
+sui:hasStructVisibility rdf:type owl:ObjectProperty ; rdfs:domain sui:Struct ; rdfs:range sui:StructVisibility .
+sui:usesBorrowingOperator rdf:type owl:ObjectProperty ; rdfs:domain sui:Function ; rdfs:range sui:BorrowingOperator .
+sui:isEntry      rdf:type owl:DatatypeProperty ; rdfs:range xsd:boolean .
+sui:isTest       rdf:type owl:DatatypeProperty ; rdfs:range xsd:boolean .
+sui:isNative     rdf:type owl:DatatypeProperty ; rdfs:range xsd:boolean .
+sui:isMutable    rdf:type owl:DatatypeProperty ; rdfs:range xsd:boolean .
+
+
+sui:hasPTB       rdf:type owl:ObjectProperty ; rdfs:domain sui:Transaction ; rdfs:range sui:ProgrammableTransactionBlock .
+sui:produces     rdf:type owl:ObjectProperty ; rdfs:domain sui:Transaction ; rdfs:range sui:TransactionEffects .
+sui:emits        rdf:type owl:ObjectProperty ; rdfs:domain [ a owl:Class ; owl:unionOf (sui:Function sui:Transaction) ] ; rdfs:range sui:Event .
+sui:hasAddress   rdf:type owl:DatatypeProperty ; rdfs:range xsd:string .
+
+
+sui:specifies    rdf:type owl:ObjectProperty ; rdfs:domain sui:Specification ; rdfs:range [ a owl:Class ; owl:unionOf (sui:Module sui:Function sui:Struct) ] .
+sui:verifies     rdf:type owl:ObjectProperty ; rdfs:domain sui:Invariant ; rdfs:range [ a owl:Class ; owl:unionOf (sui:Struct sui:Module) ] .
+sui:hasClause    rdf:type owl:ObjectProperty ; rdfs:domain sui:Specification ; rdfs:range sui:SpecClause .
+sui:hasCondition rdf:type owl:DatatypeProperty ; rdfs:domain sui:SpecClause ; rdfs:range xsd:string .
+
+
+#################################################################
+# External Alignments
+#################################################################
+
+
+sui:Package  owl:equivalentClass prov:Entity .
+sui:Function rdfs:subClassOf prov:Activity, software:Function .
+sui:Module   rdfs:subClassOf time:TemporalEntity .
+
+
+#################################################################
+# Key Axioms & Constraints
+#################################################################
+
+
+sui:Object rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sui:implements ; owl:hasValue :key ] .
+sui:Struct rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sui:hasStructVisibility ; owl:allValuesFrom [ a owl:Class ; owl:oneOf (:structPublic) ] ] .
+
+
+#################################################################
+# OC-DCR Core
+#################################################################
+
+
+dcr:Process   rdf:type owl:Class .
+dcr:Event     rdf:type owl:Class .
+dcr:condition rdf:type owl:ObjectProperty .
+dcr:response  rdf:type owl:ObjectProperty .
+dcr:inclusion rdf:type owl:ObjectProperty .
+dcr:exclusion rdf:type owl:ObjectProperty .
+ocdcr:hasEvent rdf:type owl:ObjectProperty ; rdfs:domain dcr:Process ; rdfs:range dcr:Event .
+ocdcr:involvesEntity rdf:type owl:ObjectProperty .
+sui:definesLifecycleOf rdf:type owl:ObjectProperty ; rdfs:domain dcr:Process ; rdfs:range sui:Struct ; rdfs:comment "Links a DCR process to the Struct whose lifecycle it defines." .
+sui:spawns rdf:type owl:ObjectProperty ; rdfs:domain dcr:Event ; rdfs:range dcr:Process ; rdfs:comment "Event spawns new process instance." .
+sui:mapsToFunction rdf:type owl:ObjectProperty ; rdfs:domain dcr:Event ; rdfs:range sui:Function .
+
+
+#################################################################
+# Pattern Model
+#################################################################
+
+
+sui:BusinessLogicPattern rdf:type owl:Class ; rdfs:comment "Abstract security patterns (why)" .
+sui:SuiImplementationPattern rdf:type owl:Class ; rdfs:comment "Concrete Move techniques (how)" .
+
+
+sui:implementsPattern rdf:type owl:ObjectProperty ; rdfs:domain [ a owl:Class ; owl:unionOf (sui:Module sui:Struct) ] ; rdfs:range sui:SuiImplementationPattern ; rdfs:comment "Link code to implementation pattern." .
+sui:isImplementedBy rdf:type owl:ObjectProperty ; rdfs:domain sui:BusinessLogicPattern ; rdfs:range sui:SuiImplementationPattern ; rdfs:comment "Link abstract to concrete technique." .
+
+
+#################################################################
+# Business Logic Pattern Individuals
+#################################################################
+
+
+:AccessControlPattern       rdf:type sui:BusinessLogicPattern, owl:NamedIndividual ; rdfs:label "Access Control Pattern" .
+:CircuitBreakerPattern      rdf:type sui:BusinessLogicPattern, owl:NamedIndividual ; rdfs:label "Circuit Breaker Pattern" .
+:TimeIncentivizationPattern rdf:type sui:BusinessLogicPattern, owl:NamedIndividual ; rdfs:label "Time Incentivization Pattern" .
+:EscapabilityPattern        rdf:type sui:BusinessLogicPattern, owl:NamedIndividual ; rdfs:label "Escapability Pattern" .
+
+
+:CapabilityTechnique        rdf:type sui:SuiImplementationPattern, owl:NamedIndividual ; rdfs:label "Capability Technique" .
+:AdminStateControlTechnique rdf:type sui:SuiImplementationPattern, owl:NamedIndividual ; rdfs:label "Admin State Control Technique" .
+:LinearVestingTechnique     rdf:type sui:SuiImplementationPattern, owl:NamedIndividual ; rdfs:label "Linear Vesting Technique" .
+:WitnessTechnique           rdf:type sui:SuiImplementationPattern, owl:NamedIndividual ; rdfs:label "Witness/Receipt Technique" .
+
+
+#################################################################
+# Pattern Links
+#################################################################
+
+
+:AccessControlPattern       sui:isImplementedBy :CapabilityTechnique .
+:CircuitBreakerPattern      sui:isImplementedBy :AdminStateControlTechnique .
+:TimeIncentivizationPattern sui:isImplementedBy :LinearVestingTechnique .
+:EscapabilityPattern        sui:isImplementedBy :WitnessTechnique .
+
+
+#################################################################
+# DCR Process Individuals
+#################################################################
+
+
+:AccessControlProcess rdf:type dcr:Process, owl:NamedIndividual ;
+    rdfs:label "Access Control Process" ;
+    ocdcr:hasEvent :AC_GrantRole, :AC_ProtectedCall, :AC_RevokeRole .
+
+
+:AC_GrantRole rdf:type ocdcr:Event, dcr:Event, owl:NamedIndividual ;
+    rdfs:label "Grant Role" ;
+    ocdcr:includes :AC_ProtectedCall .
+:AC_ProtectedCall rdf:type ocdcr:Event, dcr:Event, owl:NamedIndividual ;
+    rdfs:label "Protected Call" ;
+    dcr:condition :AC_GrantRole .
+
+
+:AC_RevokeRole rdf:type ocdcr:Event, dcr:Event, owl:NamedIndividual ;
+    rdfs:label "Revoke Role" ;
+    ocdcr:excludes :AC_ProtectedCall .
+
+
+:CircuitBreakerProcess rdf:type dcr:Process, owl:NamedIndividual ; ocdcr:hasEvent :CB_Pause, :CB_Unpause, :CB_OperationalCall .
+:CB_Pause            rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "CB_Pause" ; dcr:exclusion :CB_OperationalCall ; dcr:inclusion :CB_Unpause .
+:CB_Unpause          rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "CB_Unpause" ; dcr:inclusion :CB_OperationalCall ; dcr:exclusion :CB_Unpause .
+:CB_OperationalCall  rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "CB_OperationalCall" .
+
+
+:TimeIncentivizationProcess rdf:type dcr:Process, owl:NamedIndividual ; ocdcr:hasEvent :TI_Start, :TI_Proceed, :TI_Timeout, :TI_Penalize .
+:TI_Start   rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "TI_Start" ; dcr:response :TI_Proceed ; dcr:inclusion :TI_Proceed, :TI_Timeout .
+:TI_Proceed rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "TI_Proceed" ; dcr:condition :TI_Start ; dcr:exclusion :TI_Timeout .
+:TI_Timeout rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "TI_Timeout" ; dcr:response :TI_Penalize .
+:TI_Penalize rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "TI_Penalize" .
+
+
+:EscapabilityProcess rdf:type dcr:Process, owl:NamedIndividual ; ocdcr:hasEvent :ES_Authorize, :ES_Escape .
+:ES_Authorize rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "ES_Authorize" .
+:ES_Escape    rdf:type dcr:Event, owl:NamedIndividual ; rdfs:label "ES_Escape" ; dcr:condition :ES_Authorize .
+
+
+#################################################################
+# Case Study Individuals
+#################################################################
+
+
+### Case Study 1: transfer_policy.move (Access Control)
+:transfer_policy_module rdf:type sui:Module, owl:NamedIndividual ;
+    rdfs:label "transfer_policy" ;
+    sui:contains :TransferPolicy_struct, :TransferPolicyCap_struct, :new_func, :withdraw_func, :destroy_func ;
+    sui:implementsPattern :CapabilityTechnique .
+
+
+:TransferPolicy_struct rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "TransferPolicy" .
+:TransferPolicyCap_struct rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "TransferPolicyCap" .
+
+
+:new_func rdf:type sui:Function, owl:NamedIndividual ; 
+    rdfs:label "new" ; 
+    sui:mapsToFunction :AC_GrantRole .
+
+
+:withdraw_func rdf:type sui:Function, owl:NamedIndividual ; 
+    rdfs:label "withdraw" ; 
+    sui:mapsToFunction :AC_ProtectedCall .
+
+
+:destroy_func rdf:type sui:Function, owl:NamedIndividual ;
+    rdfs:label "destroy_and_withdraw" ;
+    sui:mapsToFunction :AC_RevokeRole .
+
+
+### Case Study 2: coin.move (Circuit Breaker)
+:coin_cb_module rdf:type sui:Module, owl:NamedIndividual ; rdfs:label "coin" ;
+    sui:contains :TreasuryCap_struct, :DenyCapV2_struct, :enable_pause_func, :disable_pause_func, :mint_func, :burn_func, :transfer_func ;
+    sui:implementsPattern :AdminStateControlTechnique .
+:TreasuryCap_struct rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "TreasuryCap" .
+:DenyCapV2_struct  rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "DenyCapV2" .
+:enable_pause_func  rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "deny_list_v2_enable_global_pause" ; sui:mapsToFunction :CB_Pause .
+:disable_pause_func rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "deny_list_v2_disable_global_pause" ; sui:mapsToFunction :CB_Unpause .
+:mint_func   rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "mint" ; sui:mapsToFunction :CB_OperationalCall .
+:burn_func   rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "burn" ; sui:mapsToFunction :CB_OperationalCall .
+:transfer_func rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "mint_and_transfer" ; sui:mapsToFunction :CB_OperationalCall .
+
+
+### Case Study 3: linear.move (Time Incentivization)
+:linear_module rdf:type sui:Module, owl:NamedIndividual ; rdfs:label "linear" ;
+    sui:contains :Wallet_struct, :claimable_func, :claim_func ;
+    sui:implementsPattern :LinearVestingTechnique .
+:Wallet_struct rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "Wallet" .
+:claimable_func rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "claimable" ; sui:mapsToFunction :TI_Start .
+:claim_func    rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "claim" ; sui:mapsToFunction :TI_Proceed .
+
+
+### Case Study 4: sui::package (Escapability)
+:package_module rdf:type sui:Module, owl:NamedIndividual ; rdfs:label "package" ;
+    sui:contains :UpgradeCap_struct, :UpgradeReceipt_struct, :authorize_upgrade_func, :commit_upgrade_func ;
+    sui:implementsPattern :WitnessTechnique .
+:UpgradeCap_struct rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "UpgradeCap" .
+:UpgradeReceipt_struct rdf:type sui:Struct, owl:NamedIndividual ; rdfs:label "UpgradeReceipt" .
+:authorize_upgrade_func rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "authorize_upgrade" ; sui:mapsToFunction :ES_Authorize .
+:commit_upgrade_func    rdf:type sui:Function, owl:NamedIndividual ; rdfs:label "commit_upgrade" ; sui:mapsToFunction :ES_Escape .
+
+
+#################################################################
+# End of ontology
+#################################################################
