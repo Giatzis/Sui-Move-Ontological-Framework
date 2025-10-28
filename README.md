@@ -33,10 +33,10 @@ The core of this research is the Sui Move ontology, which is provided in the `on
 
 The research formally models four critical secure design patterns using DCR graphs to represent their expected control flow and state dependencies. The visual models for these graphs are included in the `/images` directory.
 
-1. **Access Control**: Ensures only authorized entities can execute specific functions.
-2. **Circuit Breaker**: Provides a fail-safe mechanism to suspend critical functions in emergencies.
-3. **Time Incentivization**: Uses temporal constraints to reward or penalize actions.
-4. **Escapability**: Models stateful business logic to prevent unintended states.
+1. **Access Control**: Ensures only authorized entities can execute specific functions. To run the model simulation <a href="https://sim.dcrgraphs.net?code=C7311D11-DBA0-4AAB-844F-56E2E804BB81" target="_blank">click here 🔗</a>.
+2. **Circuit Breaker**: Provides a fail-safe mechanism to suspend critical functions in emergencies. To run the model simulation <a href="https://sim.dcrgraphs.net?code=71C301FF-F417-4622-A154-82DFF487B5E1" target="_blank">click here 🔗</a>.
+3. **Time Incentivization**: Uses temporal constraints to reward or penalize actions. To run the model simulation <a href="https://sim.dcrgraphs.net?code=14C70FA3-20E9-45F8-A016-28D4E1586F5B" target="_blank">click here 🔗</a>.
+4. **Escapability**: Models stateful business logic to prevent unintended states. To run the model simulation <a href="https://sim.dcrgraphs.net?code=5D1F2424-142F-4CCD-B513-8146975242FF" target="_blank">click here 🔗</a>.
 
 ## Authors
 PhD Candidate Giatzis Antonios, University of Macedonia, Thessaloniki, Greece.<br /> 
