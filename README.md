@@ -2,7 +2,7 @@
 
 We introduces a comprehensive, multi-layered ontological framework designed for the formal modeling and security analysis of smart contracts written in the Sui Move language.
 
-## Abstract
+## 🧠 Abstract
 
 The proliferation of decentralized applications (dApps) has highlighted the critical need for robust security analysis of smart contracts. Business logic vulnerabilities, which stem from inconsistencies between a contract's intended design and its on-chain implementation, pose a significant threat that traditional code-level analysis tools often miss. This research presents a novel framework to address this gap by creating a semantic bridge between high-level architectural intent and low-level code implementation in the Sui Move ecosystem.
 
@@ -14,13 +14,13 @@ Our framework is composed of three integrated layers:
 
 This repository provides the complete ontology, the DCR graph models, and other relevant materials.
 
-## Repository Structure
+## 🗂 Repository Structure
 
 - `/ontology/`: Contains the core OWL ontology file.
 - `/images/`: Contains visual representations of the DCR graphs for the four security patterns discussed in the paper.
 - `/codebases/`: Contains the codebases upon which the ontology was externally validated (September 24, 2025).
 
-## The Ontology
+## 🕸 The Ontology
 
 The core of this research is the Sui Move ontology, which is provided in the `ontology` directory. It is structured into four interconnected layers:
 
@@ -29,7 +29,7 @@ The core of this research is the Sui Move ontology, which is provided in the `on
 - **Behavioral Layer**: Formally models the intended dynamic behavior of smart contracts using OC-DCR graphs.
 - **Verification Layer**: Models components of the Move Prover to support the analysis of formal specifications.
 
-## DCR Graph Models
+## ⚙️ DCR Graph Models
 
 The research formally models four critical secure design patterns using DCR graphs to represent their expected control flow and state dependencies. The visual models for these graphs are included in the `/images` directory.
 
@@ -38,6 +38,6 @@ The research formally models four critical secure design patterns using DCR grap
 3. **Time Incentivization**: Uses temporal constraints to reward or penalize actions. To run the model simulation <a href="https://sim.dcrgraphs.net?code=14C70FA3-20E9-45F8-A016-28D4E1586F5B" target="_blank">click here 🔗</a>.
 4. **Escapability**: Models stateful business logic to prevent unintended states. To run the model simulation <a href="https://sim.dcrgraphs.net?code=5D1F2424-142F-4CCD-B513-8146975242FF" target="_blank">click here 🔗</a>.
 
-## Authors
+## 👨‍💻 Authors
 PhD Candidate Giatzis Antonios, University of Macedonia, Thessaloniki, Greece.<br /> 
 Professor Christos K. Georgiadis (Supervisor), University of Macedonia, Thessaloniki, Greece.
