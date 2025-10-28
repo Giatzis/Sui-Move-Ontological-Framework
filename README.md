@@ -31,7 +31,7 @@ The core of this research is the Sui Move ontology, which is provided in the `on
 
 ## ⚙️ DCR Graph Models
 
-The research formally models four critical secure design patterns using DCR graphs to represent their expected control flow and state dependencies. The visual models for these graphs are included in the `/images` directory.
+The research formally models four security design patterns, using DCR graphs, to represent their expected control flow and state dependencies. The visual models for these graphs are included in the `/images` directory.
 
 1. **Access Control**: Ensures only authorized entities can execute specific functions. To run the model simulation <a href="https://sim.dcrgraphs.net?code=C7311D11-DBA0-4AAB-844F-56E2E804BB81" target="_blank">click here 🔗</a>.
 2. **Circuit Breaker**: Provides a fail-safe mechanism to suspend critical functions in emergencies. To run the model simulation <a href="https://sim.dcrgraphs.net?code=71C301FF-F417-4622-A154-82DFF487B5E1" target="_blank">click here 🔗</a>.
