@@ -39,5 +39,5 @@ The research formally models four security design patterns, using DCR graphs, to
 4. **Escapability**: Models stateful business logic to prevent unintended states. To run the model simulation <a href="https://sim.dcrgraphs.net?code=5D1F2424-142F-4CCD-B513-8146975242FF" target="_blank">click here 🔗</a>.
 
 ## 👨‍💻 Authors
-PhD Candidate Giatzis Antonios, University of Macedonia, Thessaloniki, Greece.<br /> 
-Professor Christos K. Georgiadis (Supervisor), University of Macedonia, Thessaloniki, Greece.
+👉 PhD Candidate Giatzis Antonios, University of Macedonia, Thessaloniki, Greece.<br /> 
+👉 Professor Christos K. Georgiadis (Supervisor), University of Macedonia, Thessaloniki, Greece.
